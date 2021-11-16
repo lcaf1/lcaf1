@@ -2,13 +2,13 @@ import * as React from 'react';
 import { StyleSheet, Button, View, SafeAreaView, Text, TextInput } from 'react-native';
 import { initializeApp } from "firebase/app";
 import { useState } from 'react';
-import { getAuth, signInWithEmailAndPassword  } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword  } from "firebase/auth";
 
-export default function Login({ navigation }) {
+export default function CadastroUsuario({ navigation }) {
   
     const [email,setEmail] = useState("");
     const [senha,setSenha] = useState("");
-  
+
     const firebaseLocalConfig = {
       apiKey: "AIzaSyAl6ofchoX5qRwtc9W1R_fObmEYB-i6d84",
       authDomain: "projetoreact-d4cab.firebaseapp.com",
@@ -18,16 +18,16 @@ export default function Login({ navigation }) {
       appId: "1:50471244965:web:59da4426ad5e87f20f294c",
       measurementId: "G-2MWSNDB2G6"
     };
-   
+    
   
     const app = initializeApp(firebaseLocalConfig);
   
-    function loginFirebase(){
+    function cadastrarFirebase(){
       const auth = getAuth();
-      signInWithEmailAndPassword(auth, email, senha)
+      createUserWithEmailAndPassword(auth, email, senha)
         .then((userCredential) => {
           const user = userCredential.user;
-          navigation.navigate('ListaContatos');
+          navigation.navigate('Login');
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -42,15 +42,10 @@ export default function Login({ navigation }) {
         <TextInput style={styles.input} value={email} onChangeText={email => setEmail(email)} />
         <Text style={styles.title}>senha</Text>
         <TextInput style={styles.input} secureTextEntry={true} value={senha} onChangeText={senha => setSenha(senha)} />
-        <Button
-          title="Login"
-          onPress={() => {loginFirebase()}}
-        />
         <br />
         <Button
-          title="Cadastre-se"
-          color="red"
-          onPress={() => navigation.navigate('CadastroUsuario')}
+          title="Salvar"
+          onPress={() => {cadastrarFirebase()}}
         />
       </View>
     </SafeAreaView>

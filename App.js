@@ -1,29 +1,25 @@
 import * as React from 'react';
-import { View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import LoginScreen  from  './screens/LoginScreen';
-import UsuarioScreen from './screens/CadastroDeUsuarios';
-import ListaDeContatosScreen from './screens/ListaDeContatos';
-import ContatoScreen from './screens/Contato';
-import CadUsuarioScreen from './screens/CadastroDeUsuarios'
-
+import CadastroUsuario from './screens/CadastroUsuario'
+import ListaContatos from './screens/ListaContatos'
+import CadastroContato from './screens/CadastroContato'
+import AlterarExcluirContato from './screens/AlterarExcluirContato'
+import Login from './screens/Login'
 
 const Stack = createNativeStackNavigator();
 
-function App() {
+export default function App() {
+  
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="CadastroDeUsuario" component={UsuarioScreen} />
-        <Stack.Screen name="ListaDeContatos" component={ListaDeContatosScreen} />
-        <Stack.Screen name="Contato" component={ContatoScreen} />
-        <Stack.Screen name="CadUsuario" component={CadUsuarioScreen} />
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="CadastroUsuario" component={CadastroUsuario} />
+        <Stack.Screen name="ListaContatos" component={ListaContatos} />
+        <Stack.Screen name="AlterarExcluirContato" component={AlterarExcluirContato} />
+        <Stack.Screen name="CadastroContato" component={CadastroContato} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
-
-
-export default App;
